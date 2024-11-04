@@ -1,0 +1,20 @@
+Environment,Number of bins,Expert Score,Random Score
+FingerSpin,3,853.62,4.36
+FishSwim,3,418.58,72.32
+CheetahRun,3,664.57,5.39
+QuadrupedWalk,3,781.19,121.37
+HumanoidStand,3,711.9,4.54
+DogTrot,3,724.37,7.32
+DogTrot,10,736.95,6.48
+DogTrot,30,768.24,6.39
+DogTrot,50,752.58,6.1
+DogTrot,75,803.05,6.31
+DogTrot,100,756.86,6.14
+,,,
+Environment,Number of actuators,Expert Score,Random Score
+Maze,3,99.22,-1.76
+Maze,5,99.34,-5.62
+Maze,7,99.38,-6.85
+Maze,10,99.37,-7.45
+Maze,12,99.2,-7.45
+Maze,15,99.33,-7.45
