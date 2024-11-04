@@ -1,5 +1,4 @@
 # An investigation of offline reinforcement learning in factorisable action spaces
-UNDER CONSTRUCTION
 
 This repository contains the code and datasets used to produce the results in our paper - link pending.
 
