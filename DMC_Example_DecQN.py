@@ -7,18 +7,18 @@ from Utils import MainUtils
 from Algorithms import DecQN
 from dmc_datasets.environment_utils import make_env
 
+PATH_TO_DATA = None  # fill this in if you have not set global environment variable
+
 # Load environment and dataset
 env = make_env('cheetah', 'run')
-dataset = env.load_dataset('random-medium-expert')
+dataset = env.load_dataset('random-medium-expert', data_dir=PATH_TO_DATA)
 
 # Network and hyperparameters
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 state_dim = env.observation_space.shape[0]
-action_dim = env.action_space.shape[0]
-max_action = env.action_space.high[0]
+action_dim = len(env.action_space)
 sub_action_dim = 3
 num_critics = 2
-sub_actions = np.linspace(start=-max_action, stop=max_action, num=sub_action_dim)
 memory_size = len(dataset)
 
 print("Creating replay buffer...")
@@ -58,8 +58,7 @@ for epoch in range(epochs):
             with torch.no_grad():
                 state = (state - mean) / std
                 action = agent.choose_action(state)
-                action_env = np.take(sub_actions, action)
-                state, reward, done, last_step, info = env.step(action_env)
+                state, reward, done, last_step, info = env.step(action)
                 score += reward
         scores.append(score)
         scores_norm.append(env.get_normalised_score(score))
