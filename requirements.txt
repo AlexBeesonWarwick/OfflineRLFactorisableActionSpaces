@@ -1,0 +1,3 @@
+torch
+numpy
+-e git+https://github.com/davidireland3/dmc_datasets.git#egg=dmc_datasets

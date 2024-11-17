@@ -1,26 +1,18 @@
-expert_score = 781.19
-random_score = 121.37
-
 # Imports
-import sys
-import gymnasium as gym
 import torch
 import numpy as np
-import random
-import pickle
 import time
 
 from Utils import MainUtils
 from Algorithms import DecQN
+from dmc_datasets.environment_utils import make_env
 
 # Load environment and dataset
-env = MainUtils.DMSuiteWrapper(domain_name="quadruped", task_name="walk")
-open_file = open("YourPathHere", "rb")
-dataset = pickle.load(open_file)
-open_file.close()
+env = make_env('cheetah', 'run')
+dataset = env.load_dataset('random-medium-expert')
 
 # Network and hyperparameters
-device = "cuda:0"
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
 state_dim = env.observation_space.shape[0]
 action_dim = env.action_space.shape[0]
 max_action = env.action_space.high[0]
@@ -69,9 +61,8 @@ for epoch in range(epochs):
                 action_env = np.take(sub_actions, action)
                 state, reward, done, last_step, info = env.step(action_env)
                 score += reward
-        score_norm = 100 * (score - random_score) / (expert_score - random_score)
         scores.append(score)
-        scores_norm.append(score_norm)
+        scores_norm.append(env.get_normalised_score(score))
 
     print("Grad steps", grad_steps,
           "Average Score Offline %.2f" % np.mean(scores),
