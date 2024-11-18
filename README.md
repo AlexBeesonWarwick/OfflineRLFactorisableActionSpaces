@@ -1,6 +1,6 @@
 # An investigation of offline reinforcement learning in factorisable action spaces
 
-This repository contains the code and datasets used to produce the results in our paper - link pending.
+This repository contains the code and datasets used to produce the results in our paper published in TMLR - https://openreview.net/pdf?id=STwxyUfpNV.
 
 The benchmark datasets can be accessed here - https://warwickfiles.warwick.ac.uk/s/GrGH9RsyDRajASq
 
