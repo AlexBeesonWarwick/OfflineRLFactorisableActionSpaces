@@ -2,11 +2,11 @@
 
 This repository contains the code and datasets used to produce the results in our paper - link pending.
 
-The benchmark datasets can be accessed here - https://warwickfiles.warwick.ac.uk/s/GrGH9RsyDRajASq
+Installation and download instructions for the DMC benchmark datasets can be accessed [here](https://github.com/davidireland3/dmc_datasets). 
 
 The algorithms used in the work can be found in the folder "Algorithms".
 
-Our work makes use of a Maze environment and the DeepMind Control (DMC) suite.  Installation instructions for the Maze environment can be found here - https://github.com/yashchandak/lifelong_changing_actions.  Installation instructions for the DMC can be found here - https://github.com/google-deepmind/dm_control
+Installation instructions for the Maze environment can be found [here](https://github.com/yashchandak/lifelong_changing_actions).
 
 ## Instructions for running code
 We provide individual examples of running each algorithm for one set of Maze and DMC datasets.  To train on a different dataset, simply update the environment parameters and file location.  Be sure to update expert and random scores as well as the number of sub-action dimensions.
