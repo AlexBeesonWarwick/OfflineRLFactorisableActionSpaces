@@ -1,34 +1,28 @@
-expert_score = 781.19
-random_score = 121.37
-
 # Imports
-import sys
-import gymnasium as gym
 import torch
 import numpy as np
-import random
-import pickle
 import time
+from dmc_datasets.environment_utils import make_env
+
 
 from Utils import MainUtils
 from Algorithms import DecQN_IQL
 
 # Load environment and dataset
-env = MainUtils.DMSuiteWrapper(domain_name="quadruped", task_name="walk")
-open_file = open("YourPathHere", "rb")
-dataset = pickle.load(open_file)
-open_file.close()
+PATH_TO_DATA = None  # fill this in if you have not set global environment variable
+
+# Load environment and dataset
+env = make_env('cheetah', 'run')
+dataset = env.load_dataset('random-medium-expert', data_dir=PATH_TO_DATA)
 
 # Network and hyperparameters
-device = "cuda:0"
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
 state_dim = env.observation_space.shape[0]
-action_dim = env.action_space.shape[0]
-max_action = env.action_space.high[0]
+action_dim = len(env.action_space)
 sub_action_dim = 3
 num_critics = 2
 expectile = 0.5
 lmbda = 1
-sub_actions = np.linspace(start=-max_action, stop=max_action, num=sub_action_dim)
 memory_size = len(dataset)
 
 print("Creating replay buffer...")
@@ -68,12 +62,10 @@ for epoch in range(epochs):
             with torch.no_grad():
                 state = (state - mean) / std
                 action = agent.choose_action(state, lmbda)
-                action_env = np.take(sub_actions, action)
-                state, reward, done, last_step, info = env.step(action_env)
+                state, reward, done, last_step, info = env.step(action)
                 score += reward
-        score_norm = 100 * (score - random_score) / (expert_score - random_score)
         scores.append(score)
-        scores_norm.append(score_norm)
+        scores_norm.append(env.get_normalised_score(score))
 
     print("Grad steps", grad_steps,
           "Average Score Offline %.2f" % np.mean(scores),
