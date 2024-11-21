@@ -6,7 +6,7 @@ Installation instructions for the DeepMind Control suite can be found [here](htt
 
 Installation instructions for the Maze environment can be found [here](https://github.com/yashchandak/lifelong_changing_actions).
 
-Datasets can be downloaded from [here][https://warwickfiles.warwick.ac.uk/s/GrGH9RsyDRajASq?path=%2F].
+Datasets can be downloaded from [here](https://warwickfiles.warwick.ac.uk/s/GrGH9RsyDRajASq?path=%2F).
 
 ## Instructions for running code
 We provide individual examples of running each algorithm for one set of DMC and Maze datasets.  To train on a different dataset, simply update the associated parameters.
