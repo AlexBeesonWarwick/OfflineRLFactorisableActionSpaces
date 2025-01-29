@@ -8,6 +8,9 @@ Installation instructions for the Maze environment can be found [here](https://g
 
 Datasets can be downloaded from [here](https://warwickfiles.warwick.ac.uk/s/GrGH9RsyDRajASq?path=%2F).
 
+## Errata
+In Appendix C.2 of the paper the _random-medium-expert_ datasets for the DMC suite environments/tasks are stated to be 1M transitions, the same as _medium_ and _expert_.  This is incorrect and the paper should have stated the _random-medium-expert_ datasets are 200k transitions.  These datasets were intentionally smaller than _medium_ and _expert_ as we wanted to create more of a challenge based on sub-optimality, diversity and (relatively) small numbers of transitions.
+
 ## Instructions for running code
 We provide individual examples of running each algorithm for one set of DMC and Maze datasets.  To train on a different dataset, simply update the associated parameters.
 
